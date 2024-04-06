@@ -42,7 +42,7 @@ public class BrandBusinessRules : BaseBusinessRules
 
     public async Task BrandNameCannotBeDuplicatedWhenInserted(string name)
     {
-        Brand? result = await _brandRepository.GetAsync(predicate: b.Name.ToLower() == name.ToLower());
+        Brand? result = await _brandRepository.GetAsync(predicate: b => b.Name.ToLower() == name.ToLower());
         if (result != null)
         {
             throw new BusinessException("Brand Name Exists");
